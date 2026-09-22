@@ -3,33 +3,39 @@ const projects = [
   {
     title: "Bootstrap Store",
     tag: "01",
-    url: "https://calebasia-bootstrapstore.netlify.app/",
+    url: "https://caleb-asia.github.io/bootstrap_store/",
+    description: "A store that sells a variety of products and utilizes the Bootstrap framework.",
   },
   {
     title: "Animation Store",
     tag: "02",
-    url: "https://animationweb-calebasia.netlify.app/",
+    url: "https://caleb-asia.github.io/animation-website/",
+    description: "A store that utilises a variety of styling animations.",
   },
   {
     title: "Gallery",
     tag: "03",
-    url: "https://caleb-asia-gallery.netlify.app/",
+    url: "https://caleb-asia.github.io/galleryexcercise/",
+    description: "A single-page webpage that shows images from three categories, with filtering and an overlay description for each image.",
   },
   {
     title: "E-commerce",
     tag: "04",
     url: "https://group-10-module-3-core-project-production-30a0.up.railway.app/",
+    description: "An online store created in a group for university students, with food tailored to many preferences and tastes.",
     note: "Login: demo@foodboxx.co.za · Password: Demo123!",
   },
   {
     title: "Web Scraping",
     tag: "05",
     url: "https://market-pulse-11gq.onrender.com/",
+    description: "A team project that uses web scraping to pull data from other websites, with data automatically refreshed every 15 minutes.",
   },
   {
     title: "HR Website",
     tag: "06",
     url: "https://module1-project-hr.onrender.com/",
+    description: "A team project aimed at helping supervisors manage their employees and track everything in one place.",
     note: "User: admin · Password: password123",
   },
 ];
@@ -59,6 +65,7 @@ const projects = [
         <div>
           <div class="mono text-xs text-lime-300">{{ project.tag }}</div>
           <h3 class="mt-4 text-xl font-bold text-white">{{ project.title }}</h3>
+          <p class="mt-3 text-sm leading-6 text-white/55">{{ project.description }}</p>
           <p v-if="project.note" class="mt-3 text-xs leading-5 text-white/45">
             {{ project.note }}
           </p>

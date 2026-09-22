@@ -9,6 +9,7 @@ const icon = (name) =>
     mysql: "DB",
     vuejs: "V",
     nodejs: "N",
+    bootstrap: "B",
   })[name];
 const languages = [
   ["JavaScript", "28.23%", "bg-yellow-300"],
@@ -29,6 +30,7 @@ const stack = [
 const frameworks = [
   ["Vue", icon("vuejs")],
   ["Node.js", icon("nodejs")],
+  ["Bootstrap", icon("bootstrap")],
 ];
 </script>
 <template>

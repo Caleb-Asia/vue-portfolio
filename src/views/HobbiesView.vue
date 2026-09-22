@@ -36,19 +36,18 @@ const hobbies = [
       </p>
     </div>
     <div class="hobby-rope-wrap relative mt-24">
-      <div class="hobby-rope" aria-hidden="true" />
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="hobby-list">
         <article
           v-for="hobby in hobbies"
           :key="hobby.title"
-          class="hobby-card glass relative rounded-3xl p-6 transition hover:-translate-y-1 hover:border-lime-300/40"
+          class="hobby-item"
         >
-          <span class="rope-hole" aria-hidden="true" />
-          <div
-            class="mb-10 h-3 w-3 rounded-full bg-lime-300 shadow-[0_0_15px_#b8ff44]"
-          />
-          <h2 class="text-xl font-bold">{{ hobby.title }}</h2>
-          <p class="mt-4 text-sm leading-7 text-white/45">{{ hobby.text }}</p>
+          <button class="hobby-title" type="button">{{ hobby.title }}</button>
+          <div class="hobby-bubble glass rounded-3xl p-6">
+            <div class="mb-8 h-3 w-3 rounded-full bg-lime-300 shadow-[0_0_15px_#b8ff44]" />
+            <h2 class="text-xl font-bold">{{ hobby.title }}</h2>
+            <p class="mt-4 text-sm leading-7 text-white/45">{{ hobby.text }}</p>
+          </div>
         </article>
       </div>
     </div>
@@ -56,65 +55,62 @@ const hobbies = [
 </template>
 
 <style scoped>
-.hobby-rope {
-  position: absolute;
-  top: -18px;
-  left: 2%;
-  right: 2%;
-  height: 5px;
-  z-index: 0;
-  border-radius: 999px;
-  background: linear-gradient(180deg, #d6e3bb, #5d7436 48%, #1d2c14);
-  box-shadow:
-    0 3px 8px rgba(0, 0, 0, 0.7),
-    0 0 14px rgba(184, 255, 68, 0.15);
+.hobby-list {
+  position: relative;
+  min-height: 330px;
+  padding-left: 1rem;
 }
-.hobby-rope::after {
-  content: "";
-  position: absolute;
-  inset: 1px 0 auto;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.5);
+.hobby-item { position: static; }
+.hobby-title {
+  position: relative;
+  z-index: 2;
+  display: block;
+  padding: 0.8rem 0;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  text-align: left;
+  transition: color 300ms ease, transform 300ms ease;
 }
-.hobby-card {
-  z-index: 1;
-  margin-top: 10px;
+.hobby-title:hover,
+.hobby-item:has(.hobby-bubble:hover) .hobby-title {
+  color: #b8ff44;
+  transform: translateX(0.5rem);
 }
-.rope-hole {
+.hobby-bubble {
   position: absolute;
-  top: -25px;
-  left: 50%;
-  z-index: 3;
-  width: 16px;
-  height: 16px;
-  transform: translateX(-50%);
-  border: 4px solid #090d08;
-  border-radius: 999px;
-  background: #344b22;
-  box-shadow:
-    0 0 0 1px rgba(184, 255, 68, 0.35),
-    inset 0 2px 4px rgba(0, 0, 0, 0.8);
+  top: 0;
+  right: 0;
+  width: min(52%, 430px);
+  min-height: 250px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(1.5rem) scale(0.97);
+  transition: opacity 350ms ease, transform 350ms cubic-bezier(.2,.8,.2,1);
+}
+.hobby-item:hover .hobby-bubble,
+.hobby-item:focus-within .hobby-bubble {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
 }
 @media (max-width: 639px) {
-  .hobby-rope {
-    top: -15px;
-    left: 7%;
+  .hobby-list {
+    min-height: 0;
+    padding-left: 0;
+  }
+  .hobby-title {
+    padding: 0.65rem 0;
+  }
+  .hobby-bubble {
+    position: relative;
+    top: auto;
     right: auto;
-    height: calc(100% - 20px);
-    width: 4px;
-    background: linear-gradient(90deg, #5d7436, #d6e3bb, #5d7436);
-  }
-  .hobby-rope::after {
-    inset: 0 auto 0 1px;
-    width: 1px;
-    height: 100%;
-  }
-  .hobby-card {
-    margin-left: 22px;
-  }
-  .rope-hole {
-    top: 50%;
-    left: -30px;
+    width: 100%;
+    min-height: 0;
+    margin: 0.25rem 0 0.75rem;
+    transform: translateY(-0.5rem) scale(0.98);
   }
 }
 </style>
