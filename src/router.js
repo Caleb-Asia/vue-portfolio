@@ -1,16 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-// ... your other imports ...
+// ... imports ...
 
 export default createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(), // <--- Back to standard history mode
   routes: [
     { path: "/", name: "home", component: HomeView },
-    { path: "/profile", name: "profile", component: ProfileView },
-    { path: "/portfolio", name: "portfolio", component: PortfolioView },
-    { path: "/skills", name: "skills", component: SkillsView },
-    { path: "/hobbies", name: "hobbies", component: HobbiesView },
-    { path: "/contact", name: "contact", component: ContactView },
-    { path: "/:pathMatch(.*)*", redirect: "/" } 
+    // ... your other routes ...
+    { path: "/:pathMatch(.*)*", redirect: "/" } // Keep this, it's good practice
   ],
   scrollBehavior: () => ({ top: 0 }),
 });
