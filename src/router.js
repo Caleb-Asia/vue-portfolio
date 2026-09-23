@@ -1,10 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "./views/HomeView.vue";
-import ProfileView from "./views/ProfileView.vue";
-import PortfolioView from "./views/PortfolioView.vue";
-import SkillsView from "./views/SkillsView.vue";
-import ContactView from "./views/ContactView.vue";
-import HobbiesView from "./views/HobbiesView.vue";
+// ... your other imports ...
 
 export default createRouter({
   history: createWebHistory(),
@@ -15,6 +10,7 @@ export default createRouter({
     { path: "/skills", name: "skills", component: SkillsView },
     { path: "/hobbies", name: "hobbies", component: HobbiesView },
     { path: "/contact", name: "contact", component: ContactView },
+    { path: "/:pathMatch(.*)*", redirect: "/" } 
   ],
   scrollBehavior: () => ({ top: 0 }),
 });
