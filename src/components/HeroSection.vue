@@ -11,12 +11,12 @@ import profilePic from "../public/profile-pic.png";
       <h1
         class="max-w-2xl text-6xl font-extrabold leading-[.98] tracking-[-.07em] sm:text-8xl"
       >
-        <span class="text-lime-300">Programmer</span
-        ><br />Professional<br /><span class="text-white/90">Portfolio.</span>
+        <span class="text-lime-300">Aspiring</span
+        ><br />Software<br /><span class="text-white/90">Developer.</span>
       </h1>
       <p class="mt-9 max-w-lg text-base leading-8 text-white/50">
-        Greetings! I'm Caleb Reece Asia, a passionate web developer building
-        thoughtful digital experiences and elegant systems.
+        Welcome to my portfolio! I'm Caleb Reece Asia, an aspiring software
+        developer creating thoughtful digital experiences and elegant systems.
       </p>
       <div class="mt-10 flex items-center gap-5">
         <RouterLink

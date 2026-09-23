@@ -46,8 +46,7 @@ const frameworks = [
         >
       </h2>
       <p class="mt-8 max-w-md leading-8 text-white/50">
-        Greetings! I'm Caleb Reece Asia, a passionate web developer. This
-        portfolio showcases my work and skills in web development as well as
+        This portfolio showcases my work and skills in web development as well as
         showcasing my approach towards creating things. Feel free to explore
         here and get to know me better!
       </p>
