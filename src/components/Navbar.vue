@@ -5,7 +5,7 @@ const menuOpen = ref(false);
 
 <template>
   <header
-    class="sticky top-0 z-50 border-b border-white/10 bg-[#070907]/90 backdrop-blur-xl"
+    class="site-header sticky top-0 z-50 border-b border-white/10 bg-[#070907]/90 backdrop-blur-xl"
   >
     <nav
       class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 lg:px-8"
@@ -53,6 +53,12 @@ const menuOpen = ref(false);
         <RouterLink
           class="rounded-full px-5 py-2.5 text-white/55 transition hover:text-white"
           active-class="nav-active !bg-lime-300 !text-[#10150b]"
+          to="/skills"
+          >Skills</RouterLink
+        >
+        <RouterLink
+          class="rounded-full px-5 py-2.5 text-white/55 transition hover:text-white"
+          active-class="nav-active !bg-lime-300 !text-[#10150b]"
           to="/hobbies"
           >Hobbies</RouterLink
         >
@@ -93,6 +99,12 @@ const menuOpen = ref(false);
           to="/hobbies"
           @click="menuOpen = false"
           >Hobbies</RouterLink
+        ><RouterLink
+          class="rounded-full px-4 py-3"
+          active-class="nav-active !bg-lime-300 !text-[#10150b]"
+          to="/skills"
+          @click="menuOpen = false"
+          >Skills</RouterLink
         ><RouterLink
           class="rounded-full px-4 py-3"
           active-class="nav-active !bg-lime-300 !text-[#10150b]"

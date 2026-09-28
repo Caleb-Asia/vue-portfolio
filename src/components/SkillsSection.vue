@@ -1,77 +1,25 @@
 <script setup>
-const skills = [
-  [
-    "Programming",
-    [
-      "Object-Oriented Programming",
-      "Functional Programming",
-      "Algorithm Development",
-    ],
-  ],
-  [
-    "Application Development",
-    [
-      "User Interface Development",
-      "Server-Side Development",
-      "Cross-Platform Development",
-    ],
-  ],
-  [
-    "Development Practices",
-    ["Version Management", "Performance Optimization", "Testing & Validation"],
-  ],
+const groups = [
+  ["Languages", ["HTML", "CSS", "JavaScript", "PHP", "Python"]],
+  ["Frameworks", ["Vue", "Node.js", "Express", "Bootstrap"]],
+  ["Databases", ["MySQL", "SQL fundamentals"]],
+  ["Tools", ["Git", "GitHub", "VS Code"]],
 ];
-const indicators = [
-  ["Software Development", 90],
-  ["System Architecture", 78],
-  ["Database Management", 88],
-  ["Performance Optimization", 88],
-  ["Team Collaboration", 80],
-];
+const stats = ["6 featured projects", "4 team projects", "Deepening JavaScript understanding", "Focused on full-stack growth"];
 </script>
 <template>
-  <section
-    class="grid gap-16 border-t border-white/8 py-28 lg:grid-cols-[.95fr_1.05fr] lg:items-start"
-  >
-    <div>
-      <h2 class="text-5xl font-extrabold tracking-[-.06em] sm:text-7xl">
-        <span class="text-lime-300">Technical</span><br />Skills<span
-          class="text-lime-300"
-          >.</span
-        >
-      </h2>
-      <div class="mt-10 space-y-6">
-        <div v-for="group in skills" :key="group[0]">
-          <p class="mb-3 text-sm font-bold text-white/80">{{ group[0] }}</p>
-          <div class="flex flex-wrap gap-2">
-            <span
-              v-for="skill in group[1]"
-              :key="skill"
-              class="rounded-full border border-white/10 bg-white/[.035] px-3 py-2 text-xs text-white/50"
-              >{{ skill }}</span
-            >
-          </div>
+  <section id="skills" class="content-section">
+    <div class="section-heading section-heading-with-image">
+      <div class="section-header-row">
+        <div>
+          <p class="section-label">the toolkit</p>
+          <h1>Skills I’m<br /><span>building with.</span></h1>
         </div>
+        <img src="/skills.png" alt="Skills illustration" class="section-illustration" />
       </div>
+      <p>The technologies I’ve used so far, plus the ones I’m actively learning next.</p>
     </div>
-    <div class="glass rounded-[2rem] p-7 sm:p-10">
-      <div class="mb-8">
-        <h3 class="text-lg font-bold">Skill indicators</h3>
-      </div>
-      <div class="space-y-7">
-        <div v-for="indicator in indicators" :key="indicator[0]">
-          <div class="mb-2 flex justify-between text-xs">
-            <span class="text-white/60">{{ indicator[0] }}</span
-            ><span class="mono text-lime-300">{{ indicator[1] }}%</span>
-          </div>
-          <div class="h-1.5 overflow-hidden rounded-full bg-white/8">
-            <div
-              class="h-full rounded-full bg-lime-300"
-              :style="{ width: `${indicator[1]}%` }"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="skill-groups"><article v-for="group in groups" :key="group[0]" class="skill-group"><h2>{{ group[0] }}</h2><div class="flex flex-wrap gap-2 mt-5"><span v-for="skill in group[1]" :key="skill" class="quick-skill">{{ skill }}</span></div></article></div>
+    <div class="stats-grid"><article v-for="stat in stats" :key="stat"><span class="status-dot"/><p>{{ stat }}</p></article></div>
   </section>
 </template>

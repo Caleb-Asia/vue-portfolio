@@ -2,18 +2,22 @@
 const hobbies = [
   {
     title: "Music",
+    image: "music.png",
     text: "Exploring new sounds, playlists, and the artists that keep ideas moving.",
   },
   {
     title: "Gaming",
+    image: "gaming.png",
     text: "Enjoying immersive worlds, strategic challenges, and thoughtful game design.",
   },
   {
     title: "Sports",
+    image: "sports.png",
     text: "Following and enjoying sports while appreciating the discipline, teamwork, and competition behind them.",
   },
   {
     title: "Reading",
+    image: "reading.png",
     text: "Discovering new ideas, perspectives, and stories through books and thoughtful writing.",
   },
 ];
@@ -43,10 +47,13 @@ const hobbies = [
           class="hobby-item"
         >
           <button class="hobby-title" type="button">{{ hobby.title }}</button>
-          <div class="hobby-bubble glass rounded-3xl p-6">
-            <div class="mb-8 h-3 w-3 rounded-full bg-lime-300 shadow-[0_0_15px_#b8ff44]" />
-            <h2 class="text-xl font-bold">{{ hobby.title }}</h2>
-            <p class="mt-4 text-sm leading-7 text-white/45">{{ hobby.text }}</p>
+          <div class="hobby-bubble glass rounded-3xl">
+            <div class="hobby-bubble-bg" :style="{ backgroundImage: 'url(/' + hobby.image + ')' }" aria-hidden="true" />
+            <div class="hobby-bubble-content">
+              <div class="mb-8 h-3 w-3 rounded-full bg-lime-300 shadow-[0_0_15px_#b8ff44]" />
+              <h2 class="text-xl font-bold">{{ hobby.title }}</h2>
+              <p class="mt-4 text-sm leading-7 text-white/80">{{ hobby.text }}</p>
+            </div>
           </div>
         </article>
       </div>
@@ -82,12 +89,35 @@ const hobbies = [
   position: absolute;
   top: 0;
   right: 0;
-  width: min(52%, 430px);
-  min-height: 250px;
+  width: min(62%, 560px);
+  min-height: 320px;
+  overflow: hidden;
+  border: 1px solid rgba(184, 255, 68, 0.22);
+  border-radius: 1.75rem;
+  background: rgba(15, 18, 16, 0.72);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.04), 0 0 25px rgba(184, 255, 68, 0.12);
   opacity: 0;
   pointer-events: none;
-  transform: translateX(1.5rem) scale(0.97);
+  transform: translateX(1.5rem) scale(0.96);
   transition: opacity 350ms ease, transform 350ms cubic-bezier(.2,.8,.2,1);
+}
+.hobby-bubble-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.1) contrast(1.08) brightness(0.58);
+  transform: scale(1.04);
+}
+.hobby-bubble-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 320px;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  background: linear-gradient(180deg, rgba(10, 12, 11, 0.18), rgba(10, 12, 11, 0.82));
 }
 .hobby-item:hover .hobby-bubble,
 .hobby-item:focus-within .hobby-bubble {
@@ -111,6 +141,9 @@ const hobbies = [
     min-height: 0;
     margin: 0.25rem 0 0.75rem;
     transform: translateY(-0.5rem) scale(0.98);
+  }
+  .hobby-bubble-content {
+    min-height: 250px;
   }
 }
 </style>
