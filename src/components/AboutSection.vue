@@ -5,7 +5,6 @@
         <p class="section-label">the journey</p>
         <h1>From LEGO<br /><span>to code.</span></h1>
         <p>I’ve always enjoyed building things. When I was younger, that meant LEGO and Prestik: a pile of separate pieces, one idea, and plenty of rebuilding when something didn’t work.</p>
-        <p>Today the pieces are HTML, CSS, JavaScript, Vue, APIs and databases. Coding became the digital version of that same feeling — taking something small and turning it into something real.</p>
       </div>
       <img src="/about.png" alt="About illustration" class="section-illustration profile-illustration" />
     </div>
