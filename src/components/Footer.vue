@@ -49,6 +49,10 @@
           <RouterLink class="transition hover:text-green-400" to="/portfolio"
             >Projects</RouterLink
           >
+           <RouterLink class="transition hover:text-green-400" to="/skills"
+            >Skills</RouterLink
+          >
+
           <RouterLink class="transition hover:text-green-400" to="/hobbies"
             >Hobbies</RouterLink
           >
