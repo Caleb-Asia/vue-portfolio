@@ -1,5 +1,5 @@
 <template>
-  <div class="relative min-h-screen overflow-x-hidden bg-[#070907]">
+  <div class="site-shell relative min-h-screen overflow-x-clip bg-[#070907]">
     <div
       class="pointer-events-none absolute -left-32 top-24 h-96 w-96 rounded-full bg-lime-400/10 blur-[130px]"
     />
@@ -11,7 +11,7 @@
     <main class="relative mx-auto max-w-6xl px-6 lg:px-8">
       <RouterView v-slot="{ Component, route }"
         ><Transition name="page" mode="out-in"
-          ><component :is="Component" :key="route.fullPath" /></Transition
+          ><component :is="Component" :key="route.path" /></Transition
       ></RouterView>
     </main>
     <Footer />

@@ -39,7 +39,8 @@ const submit = async () => {
 
 <template>
   <section
-    class="grid min-h-[720px] items-center gap-16 py-24 lg:grid-cols-[.8fr_1.2fr]"
+    id="contact"
+    class="contact-page"
   >
     <div>
       <h1

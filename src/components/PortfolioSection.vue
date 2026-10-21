@@ -75,7 +75,20 @@ const projects = [
     accent: "linear-gradient(135deg, rgba(144,122,255,0.25), rgba(26,22,38,0.12))",
   },
 ];
+import { onMounted, onUnmounted, ref } from "vue";
+
 const buildSteps = ["idea", "plan", "design", "code", "break something", "debug", "learn", "ship"];
+const processStep = ref(0);
+let processStepTimer;
+
+onMounted(() => {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  processStepTimer = window.setInterval(() => {
+    processStep.value = (processStep.value + 1) % buildSteps.length;
+  }, 2600);
+});
+
+onUnmounted(() => window.clearInterval(processStepTimer));
 </script>
 
 <template>
@@ -93,7 +106,27 @@ const buildSteps = ["idea", "plan", "design", "code", "break something", "debug"
           curiosity, intention, and a little bit of code.
         </p>
       </div>
-      <img src="/projects.png" alt="Projects illustration" class="section-illustration" />
+      <div class="coder-scene" role="img" :aria-label="`An animated developer coding: ${buildSteps[processStep]}`">
+        <div class="coder-laptop">
+          <div class="coder-monitor">
+          <svg :key="processStep" class="coder-monitor-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path v-if="processStep === 0" d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-1 5 3 3 0 0 0 2 5h2V4Zm6 0a3 3 0 0 1 3 3 3 3 0 0 1 1 5 3 3 0 0 1-2 5h-2V4ZM9 8h2m2 4h2m-6 4h2" />
+            <path v-else-if="processStep === 1" d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Zm6-3v15m6-12v15" />
+            <path v-else-if="processStep === 2" d="m14 5 5 5L8 21l-5 1 1-5L16 5m-4 2 5 5" />
+            <path v-else-if="processStep === 3" d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-14-2 16" />
+            <path v-else-if="processStep === 4" d="M12 3 22 21H2L12 3Zm0 6v5m0 3h.01" />
+            <path v-else-if="processStep === 5" d="M8 8 6 5m10 3 2-3M7 11H4m16 0h-3M8 8h8l2 4-2 7H8l-2-7 2-4Zm1 4h.01M15 12h.01M10 19v2m4-2v2" />
+            <path v-else-if="processStep === 6" d="M9 18h6m-5 3h4m-5-6a7 7 0 1 1 6 0c-.8.6-1 1.2-1 3h-4c0-1.8-.2-2.4-1-3Z" />
+            <path v-else d="M12 22s-7-4-7-11a7 7 0 0 1 14 0c0 7-7 11-7 11Zm-2-11 2 2 4-5m-4-5v2" />
+          </svg>
+          <small :key="`label-${processStep}`" class="coder-monitor-label">{{ buildSteps[processStep] }}</small>
+          </div>
+          <div class="laptop-base"></div>
+        </div>
+        <div class="coffee-cup"><i class="cup-handle"></i><i class="coffee-steam steam-one"></i><i class="coffee-steam steam-two"></i><i class="coffee-steam steam-three"></i></div>
+        <div class="coder-desk"></div>
+        <span class="coder-caption">BUILD / SIP / REPEAT</span>
+      </div>
     </div>
     <div class="process-line-wrap"><div class="section-heading"><p class="section-label">my very scientific process</p><h2>How I <span>build.</span></h2></div><div class="process-line"><span v-for="(step,index) in buildSteps" :key="step"><b>{{ String(index + 1).padStart(2,'0') }}</b>{{ step }}</span></div></div>
     <div class="project-showcase">
@@ -133,28 +166,40 @@ const buildSteps = ["idea", "plan", "design", "code", "break something", "debug"
 <style scoped>
 .project-showcase {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 62px 28px;
 }
 .project-card {
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.75rem;
-  background: rgba(16, 19, 18, 0.9);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  min-width: 0;
+  border: 0;
+  border-top: 1px solid #d7d4ca;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: border-color 0.25s ease;
 }
 .project-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(184, 255, 68, 0.35);
-  box-shadow: 0 24px 44px rgba(184, 255, 68, 0.08);
+  border-color: #3657ff;
+  box-shadow: none;
+}
+.project-card:first-child {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.17fr 0.83fr;
+  align-items: center;
+  gap: 36px;
 }
 .project-visual {
   position: relative;
-  min-height: 220px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 300px;
+  border-bottom: 0;
   background-size: cover;
   background-position: center;
+  transition: transform 0.35s cubic-bezier(.22,.7,.2,1);
+}
+.project-visual:hover {
+  transform: translateY(-4px);
 }
 .project-window-bar {
   position: absolute;
@@ -192,41 +237,41 @@ const buildSteps = ["idea", "plan", "design", "code", "break something", "debug"
   text-shadow: 0 8px 18px rgba(0,0,0,0.35);
 }
 .project-body {
-  padding: 1.3rem 1.2rem 1.4rem;
+  padding: 22px 0 25px;
 }
 .project-tag {
   margin-bottom: 0.8rem;
-  color: #b8ff44;
-  font: 500 11px "DM Mono", monospace;
+  color: #3657ff;
+  font: 700 9px "DM Sans", sans-serif;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 .project-body h3 {
   margin: 0;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: -0.06em;
-  color: #f4f7f2;
+  font-size: clamp(1.5rem, 2.7vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  color: #171813;
 }
 .project-subtitle {
   margin: 0.7rem 0 0;
-  color: rgba(255,255,255,0.75);
-  font-size: 0.98rem;
+  color: #45463f;
+  font-size: 0.9rem;
   line-height: 1.6;
 }
 .project-description {
   margin: 0.9rem 0 0;
-  color: rgba(255,255,255,0.6);
-  font-size: 0.9rem;
+  color: #606158;
+  font-size: 0.82rem;
   line-height: 1.75;
 }
 .project-note {
   margin: 0.95rem 0 0;
-  border: 1px solid rgba(184, 255, 68, 0.18);
-  border-radius: 0.9rem;
-  background: rgba(184, 255, 68, 0.05);
+  border: 1px solid rgba(54, 87, 255, 0.2);
+  border-radius: 0;
+  background: rgba(54, 87, 255, 0.045);
   padding: 0.7rem 0.8rem;
-  color: #e7fbc1;
+  color: #45463f;
   font-size: 0.8rem;
   line-height: 1.6;
 }
@@ -240,13 +285,12 @@ const buildSteps = ["idea", "plan", "design", "code", "break something", "debug"
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(184, 255, 68, 0.25);
-  border-radius: 999px;
+  border: 1px solid #d0cdc2;
+  border-radius: 0;
   padding: 0.42rem 0.7rem;
-  background: rgba(184, 255, 68, 0.05);
-  color: #dfffb2;
-  font: 500 11px "DM Mono", monospace;
-  text-transform: uppercase;
+  background: transparent;
+  color: #54564d;
+  font: 500 10px "DM Sans", sans-serif;
 }
 .project-actions {
   display: flex;
@@ -259,7 +303,7 @@ const buildSteps = ["idea", "plan", "design", "code", "break something", "debug"
   justify-content: center;
   min-height: 2.7rem;
   padding: 0.7rem 1rem;
-  border-radius: 999px;
+  border-radius: 0;
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -271,13 +315,13 @@ const buildSteps = ["idea", "plan", "design", "code", "break something", "debug"
   filter: brightness(1.04);
 }
 .project-link.primary {
-  background: #e8ff6a;
-  color: #101312;
+  background: #3657ff;
+  color: #fff;
 }
 .project-link.secondary {
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.02);
-  color: rgba(255,255,255,0.9);
+  border: 1px solid #171813;
+  background: transparent;
+  color: #171813;
 }
 @media (max-width: 1024px) {
   .project-showcase {
@@ -290,6 +334,13 @@ const buildSteps = ["idea", "plan", "design", "code", "break something", "debug"
   }
   .project-body h3 {
     font-size: 1.6rem;
+  }
+  .project-card:first-child {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .project-card:first-child .project-visual {
+    min-height: 260px;
   }
 }
 </style>

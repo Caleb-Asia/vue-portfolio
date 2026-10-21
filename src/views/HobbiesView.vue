@@ -24,7 +24,7 @@ const hobbies = [
 </script>
 
 <template>
-  <section class="min-h-[720px] py-24 lg:py-28">
+  <section id="hobbies" class="min-h-[720px] py-24 lg:py-28 content-section">
     <div class="max-w-2xl">
       <h1
         class="text-6xl font-extrabold leading-[.98] tracking-[-.07em] sm:text-8xl"
