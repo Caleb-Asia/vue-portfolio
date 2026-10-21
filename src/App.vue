@@ -9,9 +9,9 @@
     <div class="grid-bg pointer-events-none absolute inset-0 opacity-60" />
     <Navbar />
     <main class="relative mx-auto max-w-6xl px-6 lg:px-8">
-      <RouterView v-slot="{ Component }"
+      <RouterView v-slot="{ Component, route }"
         ><Transition name="page" mode="out-in"
-          ><component :is="Component" /></Transition
+          ><component :is="Component" :key="route.fullPath" /></Transition
       ></RouterView>
     </main>
     <Footer />
