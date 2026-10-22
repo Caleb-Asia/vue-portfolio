@@ -128,7 +128,7 @@ onUnmounted(() => window.clearInterval(processStepTimer));
         <span class="coder-caption">BUILD / SIP / REPEAT</span>
       </div>
     </div>
-    <div class="process-line-wrap"><div class="section-heading"><p class="section-label">my very scientific process</p><h2>How I <span>build.</span></h2></div><div class="process-line"><span v-for="(step,index) in buildSteps" :key="step"><b>{{ String(index + 1).padStart(2,'0') }}</b>{{ step }}</span></div></div>
+    <div class="process-line-wrap"><div class="section-heading"><p class="section-label">the build philosophy</p><h2>The ideal <span>build</span> plan</h2></div><div class="process-line"><span v-for="(step,index) in buildSteps" :key="step"><b>{{ String(index + 1).padStart(2,'0') }}</b>{{ step }}</span></div></div>
     <div class="project-showcase">
       <article v-for="project in projects" :key="project.tag" class="project-card">
         <div

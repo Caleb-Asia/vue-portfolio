@@ -7,8 +7,9 @@ const menuOpen = ref(false);
 const desktopNav = ref(null);
 const activeSection = ref(route.hash.slice(1) || "home");
 const underline = ref({ x: 0, width: 0, visible: false });
-const wiggle = ref(false);
 let scrollFrame = 0;
+let scrollSettleTimer = 0;
+let programmaticScroll = false;
 
 const navItems = [
   { label: "Home", id: "home" },
@@ -20,6 +21,26 @@ const navItems = [
 ];
 
 const activeHash = computed(() => `#${activeSection.value}`);
+
+const selectSection = (id) => {
+  programmaticScroll = true;
+  window.clearTimeout(scrollSettleTimer);
+  activeSection.value = id;
+  menuOpen.value = false;
+  const target = document.getElementById(id);
+  target?.scrollIntoView({
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    block: "start",
+  });
+  const hash = `#${id}`;
+  if (window.location.hash !== hash) {
+    window.history.pushState(window.history.state, "", `${window.location.pathname}${window.location.search}${hash}`);
+  }
+  scrollSettleTimer = window.setTimeout(() => {
+    programmaticScroll = false;
+    updateActiveSection();
+  }, 900);
+};
 
 const placeUnderline = () => {
   const activeLink = desktopNav.value?.querySelector(
@@ -42,26 +63,36 @@ const placeUnderline = () => {
 
 const updateActiveSection = () => {
   scrollFrame = 0;
+  if (programmaticScroll) return;
   const sections = [...document.querySelectorAll(".portfolio-page section[id]")];
   const current = sections.filter((section) => section.getBoundingClientRect().top <= 170).at(-1);
-  if (current) activeSection.value = current.id;
+  if (current && current.id !== activeSection.value) {
+    activeSection.value = current.id;
+    const hash = `#${current.id}`;
+    if (window.location.hash !== hash) {
+      window.history.replaceState(window.history.state, "", `${window.location.pathname}${window.location.search}${hash}`);
+    }
+  }
 };
 
 const handleScroll = () => {
+  if (programmaticScroll) {
+    window.clearTimeout(scrollSettleTimer);
+    scrollSettleTimer = window.setTimeout(() => {
+      programmaticScroll = false;
+      updateActiveSection();
+    }, 180);
+    return;
+  }
   if (!scrollFrame) scrollFrame = requestAnimationFrame(updateActiveSection);
 };
 
-watch(activeSection, async () => {
-  await nextTick();
+watch(activeSection, () => {
   placeUnderline();
-});
+}, { flush: "sync" });
 
 watch(() => route.hash, async (hash) => {
   activeSection.value = hash.slice(1) || "home";
-  await nextTick();
-  placeUnderline();
-  wiggle.value = false;
-  requestAnimationFrame(() => (wiggle.value = true));
   menuOpen.value = false;
 });
 
@@ -76,6 +107,7 @@ onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
   window.removeEventListener("resize", placeUnderline);
   if (scrollFrame) cancelAnimationFrame(scrollFrame);
+  window.clearTimeout(scrollSettleTimer);
 });
 </script>
 
@@ -90,7 +122,7 @@ onUnmounted(() => {
       <div ref="desktopNav" class="desktop-nav">
         <span
           class="nav-underline"
-          :class="{ 'nav-underline-visible': underline.visible, 'nav-underline-wiggle': wiggle }"
+          :class="{ 'nav-underline-visible': underline.visible }"
           :style="{ transform: `translateX(${underline.x}px)`, width: `${underline.width}px` }"
           aria-hidden="true"
         />
@@ -101,6 +133,7 @@ onUnmounted(() => {
           :data-section="item.id"
           :class="{ 'nav-link-active': activeHash === `#${item.id}` }"
           class="nav-link"
+          @click.prevent="selectSection(item.id)"
         >{{ item.label }}</RouterLink>
       </div>
 
@@ -119,7 +152,7 @@ onUnmounted(() => {
         :key="item.id"
         :to="{ path: '/', hash: `#${item.id}` }"
         :class="{ 'nav-link-active': activeHash === `#${item.id}` }"
-        @click="menuOpen = false"
+        @click.prevent="selectSection(item.id)"
       >{{ item.label }}</RouterLink>
     </div>
   </header>

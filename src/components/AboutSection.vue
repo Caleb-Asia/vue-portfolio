@@ -20,7 +20,7 @@ onUnmounted(() => window.clearInterval(buildStepTimer));
       <div class="profile-copy">
         <p class="section-label">the journey</p>
         <h1>From LEGO<br /><span>to code.</span></h1>
-        <p> Iâ€™ve always loved building things. Growing up, that meant LEGO bricks and Prestik spread out in front of me, turning little ideas into something real. Sometimes things worked out, sometimes they didnâ€™t, but there was always another chance to take things apart, try again, and build something better.</p>
+        <p> I have always loved building things. Growing up, that meant LEGO bricks and Prestik spread out in front of me, turning little ideas into something real. Sometimes things worked out, sometimes they didn’t, but there was always another chance to take things apart, try again, and build something better.</p>
       </div>
       <div class="computer-build profile-illustration" role="img" aria-label="LEGO blocks assembling into a computer">
         <div class="computer-monitor">
@@ -43,7 +43,7 @@ onUnmounted(() => window.clearInterval(buildStepTimer));
     <div class="journey-grid">
       <article><span class="section-label">01</span><h2>Start with curiosity</h2><p>I like asking how things work and then trying to make my own version.</p></article>
       <article><span class="section-label">02</span><h2>Learn by building</h2><p>Projects help me turn new concepts into something I can see, test and improve.</p></article>
-      <article><span class="section-label">03</span><h2>Keep growing</h2><p>Iâ€™m working towards becoming a stronger full-stack developer, one useful piece at a time.</p></article>
+      <article><span class="section-label">03</span><h2>Keep growing</h2><p>I'm working towards becoming a stronger full-stack developer, one useful piece at a time.</p></article>
     </div>
   </section>
 </template>

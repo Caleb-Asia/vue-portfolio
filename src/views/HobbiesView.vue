@@ -2,22 +2,22 @@
 const hobbies = [
   {
     title: "Music",
-    image: "music.png",
+    image: "new-music.png",
     text: "Exploring new sounds, playlists, and the artists that keep ideas moving.",
   },
   {
     title: "Gaming",
-    image: "gaming.png",
+    image: "new-gaming.png",
     text: "Enjoying immersive worlds, strategic challenges, and thoughtful game design.",
   },
   {
     title: "Sports",
-    image: "sports.png",
+    image: "new-sport.png",
     text: "Following and enjoying sports while appreciating the discipline, teamwork, and competition behind them.",
   },
   {
     title: "Reading",
-    image: "reading.png",
+    image: "new-reading.png",
     text: "Discovering new ideas, perspectives, and stories through books and thoughtful writing.",
   },
 ];
@@ -34,7 +34,7 @@ const hobbies = [
           >.</span
         >
       </h1>
-      <p class="mt-8 max-w-lg leading-8 text-white/50">
+      <p class="mt-8 max-w-lg leading-8 text-[#606158]">
         The things I enjoy outside of coding help me stay curious, creative, and
         connected to the world around me.
       </p>

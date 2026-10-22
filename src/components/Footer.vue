@@ -96,6 +96,24 @@
                 d="M5.2 3.5A2.2 2.2 0 1 1 .8 3.5a2.2 2.2 0 0 1 4.4 0ZM1 8h4.3v13H1V8Zm6.8 0H12v1.8h.06c.6-1.13 2.07-2.32 4.25-2.32 4.54 0 5.38 2.99 5.38 6.88V21h-4.3v-5.87c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21H7.8V8Z"
               /></svg
           ></a>
+          <a
+            href="mailto:calebasia1811@gmail.com"
+            aria-label="Email Caleb"
+            class="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur-md transition hover:border-green-400/40 hover:text-green-400"
+          ><svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m3 7 9 6 9-6" />
+          </svg></a>
         </div>
       </div>
     </div>
