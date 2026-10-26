@@ -1,6 +1,17 @@
 <script setup>
 const projects = [
   {
+    title: "WordPress Portfolio",
+    category: "Portfolio Website",
+    tag: "WordPress Portfolio",
+    url: "https://wordpress-236bf.wasmer.app/",
+    subtitle: "Personal portfolio built with WordPress",
+    description: "A WordPress portfolio showcasing my work, skills, and experience.",
+    image: "/wordpress-portfolio.png",
+    tech: ["WordPress"],
+    accent: "linear-gradient(135deg, rgba(35,138,255,0.25), rgba(18,22,32,0.15))",
+  },
+  {
     title: "FoodBoxx",
     category: "Web App",
     tag: "FoodBoxx",
@@ -155,7 +166,7 @@ onUnmounted(() => window.clearInterval(processStepTimer));
 
           <div class="project-actions">
             <a :href="project.url" target="_blank" rel="noreferrer" class="project-link primary">View Project</a>
-            <a :href="project.github" target="_blank" rel="noreferrer" class="project-link secondary">GitHub ↗</a>
+            <a v-if="project.github" :href="project.github" target="_blank" rel="noreferrer" class="project-link secondary">GitHub ↗</a>
           </div>
         </div>
       </article>
