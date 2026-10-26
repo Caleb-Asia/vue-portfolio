@@ -15,7 +15,7 @@ const projects = [
     title: "FoodBoxx",
     category: "Web App",
     tag: "FoodBoxx",
-    url: "https://group-10-module-3-core-project-production-30a0.up.railway.app/",
+    url: "https://foodboxx.onrender.com/",
     github: "https://github.com/Caleb-Asia/Group-10---Module-3-Core-Project",
     subtitle: "Student Meal Box Platform",
     description: "A meal-box platform designed to make ordering affordable meals easier for students.",
