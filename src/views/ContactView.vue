@@ -12,7 +12,7 @@ const submit = async () => {
   error.value = "";
 
   try {
-    const response = await fetch("https://formspree.io/f/xpqedpgj", {
+    const response = await fetch("https://formspree.io/f/mnpppjeq", {
       method: "POST",
       headers: {
         Accept: "application/json",

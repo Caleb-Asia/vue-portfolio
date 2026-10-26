@@ -1,8 +1,6 @@
 <script setup>
 import { computed, nextTick, onMounted, onUnmounted, ref } from "vue";
 import { gsap } from "gsap";
-import profilePic from "../public/profile-pic.png";
-
 const statuses = [["building", "Vue projects"], ["learning", "React + deeper JavaScript"], ["exploring", "APIs and backend development"]];
 const heroName = ref(null);
 const headline = ref("Caleb Reece Asia");
@@ -76,8 +74,7 @@ onUnmounted(() => {
       <h1 ref="heroName" class="hero-name"><span class="hero-name-text"><span v-for="(line, lineIndex) in headlineLines" :key="`${headline}-${lineIndex}`" class="hero-name-line"><span v-for="(letter, index) in line" :key="`${lineIndex}-${index}`" class="hero-name-letter">{{ letter }}</span></span></span></h1>
       <p class="hero-intro">“Every line of code is a chance to learn something new.”</p>
       <div class="flex flex-wrap items-center gap-5">
-        <RouterLink to="/portfolio" class="button-primary">View my work <span>↗</span></RouterLink>
-        <RouterLink to="/contact" class="button-link">Let’s talk <span>→</span></RouterLink>
+        <a href="/Caleb-Asia-CV.pdf" download class="button-primary">Download CV <span>↓</span></a>
       </div>
       <div class="status-list" aria-label="Current focus">
       
@@ -88,8 +85,8 @@ onUnmounted(() => {
         <div class="blueprint-top"><span>caleb.build()</span><span>● ● ●</span></div>
         <div class="blueprint-grid">
           <div class="build-stack" aria-hidden="true"><i/><i/><i/><i/><i/></div>
-          <img class="blueprint-photo" :class="{ 'blueprint-photo-active': activePhoto === 0 }" :src="profilePic" alt="Caleb Reece Asia" />
-          <img class="blueprint-photo" :class="{ 'blueprint-photo-active': activePhoto === 1 }" src="/profile-pic2.png" alt="Caleb Reece Asia" />
+          <img class="blueprint-photo" :class="{ 'blueprint-photo-active': activePhoto === 0 }" src="/profile-pic.webp" alt="Caleb Reece Asia" />
+          <img class="blueprint-photo" :class="{ 'blueprint-photo-active': activePhoto === 1 }" src="/profile-pic2.webp" alt="Caleb Reece Asia" />
           <div class="code-note"><span>{{ typedCommand }}</span><i class="code-caret" aria-hidden="true" /></div>
         </div>
         <div class="blueprint-bottom"><span>builder / developer</span><span>▦ 2026</span></div>
